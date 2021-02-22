@@ -1,65 +1,185 @@
-<?php 
-    $usernameV = $emailV = $passV = $cpassV = "";
-    $generalError = "";
-    
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_REQUEST["username"];
-        $email = $_REQUEST["email"];
-        $password = $_REQUEST["password"];
-        $cpassword = $_REQUEST["cpassword"];
+<?php  
+            $validateCheckBox = "";
+            $validateName = "";
+            $validateUserName = "";
+            $validateEmail = "";
+            $validateDob = "";
+            $validateGender = "";
+            $v1=$v2=$v3= "";
+            $validatePassword = "";
+            $validateCPassword = "";
+            $ValidateAllField = "";
 
-        if(empty($username) || empty($email) || empty($password) || empty($cpassword)) {
-            $generalError = "Please fill up all the fields";
-        } else {
-            if(!preg_match("/[a-zA-Z0-9._]+/", $username)) {
-                $usernameV = "Username can only have alphanumeric characters/period/underscore";
-            }
-            if(strlen($username) < 5) {
-                $usernameV .= "Username must contain atleast 5 characters";
+            if($_SERVER["REQUEST_METHOD"] == "POST")
+            {
+                $name = $_REQUEST["name"];
+                $email = $_REQUEST["email"];
+                $userName = $_REQUEST["username"];
+                $password = $_REQUEST["password"];
+                $cpassword = $_REQUEST["cpassword"];
+
+                if(empty($name) || empty($_REQUEST["gender"]) || empty($password) || empty($cpassword) || empty($userName))
+                {
+                    $ValidateAllField = "Please Fillup All The Field!!";
+                }
+                if(empty($name) || strlen($name)<4)
+                {
+                    $validateName = "You must Enter a valid Name";
+                }
+                if(empty($userName) || strlen($userName)<6 || !preg_match("/^[A-Za-z0-9_~\-!@.#\$%\^&*\(\)]+$/",$userName))
+                {
+                    $validateUserName = "Please enter Username Correctly";
+                }
+                if(empty($email) || !preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i",$email))
+                {
+                    $validateEmail = "You must Enter a valid Email";
+                }
+                
+                if(empty($_REQUEST["gender"]))
+                {
+                    $validateGender = "Please select a gender";
+                }
+                if(empty($_REQUEST["dob"]))
+                {
+                    $validateDob = "Please Enter a Date";
+                }
+                
+                if(empty($password) || strlen($password)<8)
+                {
+                    $validatePassword = "You must Enter a Password";
+                }
+                if( $password !=  $cpassword)
+                {
+                    $validateCPassword = "Confirm Password isn't match";
+                }
+                if(!isset($_REQUEST["vehicle1"]) && !isset($_REQUEST["vehicle2"]) && !isset($_REQUEST["vehicle3"]))
+                {
+                    $validateCheckBox = "Please select at least one checkbox";
+                }
             }
 
-            if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,6})$/i", $email)) {
-                $emailV = "Please enter a valid email";
-            }
-
-            if(!preg_match("/(?=.*[@#$%^&+=]).*$/", $password)) {
-                $passV = "Password atleast contain 1 special character";
-            } 
-            if(strlen($password) < 6) {
-                $passV .= "Password must contain atleast 6 characters";
-            }
-            if($password != $cpassword) {
-                $cpassV = "Both password have to match";
-            }
-        }
-    }
-?>
-
+        ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Change Password</h1>
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-        <label for="username">Username: </label>
-        <input type="text" name="username"> <br>
-        <?php echo $usernameV ?><br>
-        <label for="email">Email</label>
-        <input type="text" name="email"><br>
-        <?php echo $emailV ?><br>
-        <label for="password">Password: </label>
-        <input type="password" name="password"><br>
-        <?php echo $passV ?><br>
-        <label for="cpassword">Confirm Password</label>
-        <input type="password" name="cpassword"> <br>
-        <?php echo $cpassV ?><br>
-        <input type="submit" value="submit">
-    </form>
-</body>
+<html>
+    <head>
+        <title>Registration Form</title>
+    </head>
+    <body>
+        <h1>Registration</h1>
+        <form value="Registration" action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST"> 
+            <table>
+                <tr>
+                    <td>
+                        <label>Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="name" name="name" placeholder="Name">
+                    </td>
+                    <td>
+                        <?php echo $validateName; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Email:</label>
+                    </td>
+                    <td>
+                        <input type="email" id="email" name="email" placeholder="Email">
+                    </td>
+                    <td>
+                        <?php echo $validateEmail; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>User Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="username" name="username" placeholder="User Name">
+                    </td>
+                    <td>
+                        <?php echo $validateUserName; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </td>
+                    <td>
+                        <?php echo $validatePassword; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Cofirm Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Password">
+                    </td>
+                    <td>
+                        <?php echo $validateCPassword; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Favourite Vehicle:
+                    </td>
+                    <td>
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="bike">
+                        Bike
+                        <input type="checkbox" id="vehicle2" name="vehicle2" value="car">
+                        Car
+                        <input type="checkbox" id="vehicle3" name="vehicle3" value="boat">
+                        Boat
+                    <td>
+                        <?php echo $validateCheckBox; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Gender:</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="gender" name="gender" value="male">
+                        <label for="male">Male</lable>
+                        <input type="radio" id="gender" name="gender" value="female">
+                        <label for="female">Female</lable>
+                        <input type="radio" id="gender" name="gender" value="other">
+                        <label for="other">Other</lable>
+                    </td>
+                    <td>
+                        <?php echo $validateGender; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Date of Birth:</label>
+                    </td>
+                    <td>
+                        <input type="date" id="dob" name="dob">
+                    </td>
+                    <td>
+                        <?php echo $validateDob; ?>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td> 
+                    </td>
+                    <td align="center"> 
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Submit">
+                    </td>
+                    <td>
+                        <?php echo $ValidateAllField; ?>
+                    </td>
+                </tr>
+            </table>
+            <a href="login.php">Already Registered?</a>
+        </form>
+    </body>
 </html>
