@@ -74,7 +74,7 @@
                         <label>Name:</label>
                     </td>
                     <td>
-                        <input type="text" id="name" name="name" placeholder="Name">
+                        <input type="text" id="name" name="name">
                     </td>
                     <td>
                         <?php echo $validateName; ?>
@@ -85,7 +85,7 @@
                         <label>Email:</label>
                     </td>
                     <td>
-                        <input type="email" id="email" name="email" placeholder="Email">
+                        <input type="email" id="email" name="email" >
                     </td>
                     <td>
                         <?php echo $validateEmail; ?>
@@ -96,7 +96,7 @@
                         <label>User Name:</label>
                     </td>
                     <td>
-                        <input type="text" id="username" name="username" placeholder="User Name">
+                        <input type="text" id="username" name="username" >
                     </td>
                     <td>
                         <?php echo $validateUserName; ?>
@@ -107,7 +107,7 @@
                         <label>Password:</label>
                     </td>
                     <td>
-                        <input type="password" id="password" name="password" placeholder="Password">
+                        <input type="password" id="password" name="password" >
                     </td>
                     <td>
                         <?php echo $validatePassword; ?>
@@ -118,7 +118,7 @@
                         <label>Cofirm Password:</label>
                     </td>
                     <td>
-                        <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Password">
+                        <input type="password" id="cpassword" name="cpassword" >
                     </td>
                     <td>
                         <?php echo $validateCPassword; ?>
@@ -170,7 +170,7 @@
                 <tr>
                     <td> 
                     </td>
-                    <td align="center"> 
+                    <td> 
                         <input type="reset" value="Reset">
                         <input type="submit" value="Submit">
                     </td>
