@@ -1,0 +1,70 @@
+/* ===================== */
+/* COMMOM CSS */
+body{
+    background: #f1f1f1;
+    font-family: sans-serif,arial,Helvetica;
+}
+
+a,
+a:hover,
+a:focus{
+    text-decoration: none;
+    outline: none;
+}
+.btn:focus,
+button:focus{
+    outline: none;
+}
+
+
+
+
+/* ===================== */
+
+/* ===================== */
+/* ADMIN Panel CSS START */
+/* ===================== */
+
+#header-admin{
+    background-color: #e4e6d6;
+    padding: 15px 0;
+}
+
+#header-admin .admin-logout{
+    margin: 10px 0;
+    color: #f00;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+#header-admin .admin-logout:hover{
+    text-decoration: underline;
+}
+
+#admin-menubar{
+    background-color: #fff;
+}
+#admin-menubar .admin-menu{
+    font-size: 0;
+}
+#admin-menubar .admin-menu li{
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+#admin-menubar .admin-menu li a{
+    color: #3179c3;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 7px 15px;
+    display: block;
+    transition: all 0.3s;
+}
+
+#admin-menubar .admin-menu li a:hover{
+    color: #fff;
+    background-color: #333333;
+}
+
